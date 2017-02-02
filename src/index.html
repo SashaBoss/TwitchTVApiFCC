@@ -13,14 +13,13 @@
                 <h1>Twitch TV Streamers</h1>
             </div>
             <div class="small-2 columns">
-                <ul class="filter">
-                    <li ng-repeat="filter in filters">{{filter.name}}</li>
-                </ul>
+                <select ng-model="selectedFilter" ng-change="filterChanged()"
+                        ng-options="filterOption.name  for filterOption in filterOptions"></select>
             </div>
         </div>
         <div class="row main-content">
             <ul class="streams">
-                <li ng-repeat="stream in streams" class="stream-element">
+                <li ng-repeat="stream in streams | filter: { toDisplay: 'true'}" class="stream-element">
                     <img ng-src="{{stream.logo}}" ng-click="log(this)" class="stream-logo"/>
                     <a href="" ng-href="{{stream.url}}" target="_blank" class="stream-name">{{stream.name}}</a>
                     <span class="stream-game">{{stream.game}}</span>

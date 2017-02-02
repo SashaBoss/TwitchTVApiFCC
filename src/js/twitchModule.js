@@ -15,6 +15,34 @@
         '$scope', '$http', function ($scope, $http) {
             $scope.streams = [];
 
+            $scope.filterOptions = [
+                { name: "All", value: "all" },
+                { name: "Online", value: "online" },
+                { name: "Offline", value: "offline" }
+            ];
+
+            $scope.selectedFilter = $scope.filterOptions[0];
+
+            $scope.filterChanged = function () {
+                switch ($scope.selectedFilter.name) {
+                    case "All":
+                        $scope.streams.forEach(function (stream) {
+                            stream.toDisplay = true;
+                        });
+                        break;
+                    case "Online":
+                        $scope.streams.forEach(function (stream) {
+                            stream.toDisplay = !!stream.isOnline;
+                        });
+                        break;
+                    case "Offline":
+                        $scope.streams.forEach(function (stream) {
+                            stream.toDisplay = !stream.isOnline;
+                        });
+                        break;
+                }
+            }
+
             $scope.getInfo = function () {
                 $scope.streams.forEach(function (stream) {
                     console.log(stream);
@@ -54,6 +82,8 @@
                          channel.game = data.stream.game;
                          channel.isOnline = true;
                      };
+
+                     channel.toDisplay = true;
                      $scope.streams.push(channel);
                  });
             }
