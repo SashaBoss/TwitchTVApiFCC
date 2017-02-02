@@ -21,13 +21,13 @@
         <div class="row main-content">
             <ul class="streams">
                 <li ng-repeat="stream in streams" class="stream-element">
-                    <img ng-src="{{stream.channel.logo}}" ng-click="log(this)" class="stream-logo"/>
-                    <a href="" ng-href="{{stream.channel.url}}" target="_blank" class="stream-name">{{stream.channel.display_name}}</a>
+                    <img ng-src="{{stream.logo}}" ng-click="log(this)" class="stream-logo"/>
+                    <a href="" ng-href="{{stream.url}}" target="_blank" class="stream-name">{{stream.name}}</a>
                     <span class="stream-game">{{stream.game}}</span>
                 </li>
             </ul>
         </div>
-        <a class="button" ng-click="getInfo()"></a>
+        <a class="button" ng-click="test()"></a>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>

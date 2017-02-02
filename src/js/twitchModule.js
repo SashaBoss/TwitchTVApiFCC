@@ -15,25 +15,47 @@
         '$scope', '$http', function ($scope, $http) {
             $scope.streams = [];
 
-            $scope.getInfo = function() {
+            $scope.getInfo = function () {
                 $scope.streams.forEach(function (stream) {
                     console.log(stream);
                 });
             }
 
-            $scope.log = function(toLog) {
+            $scope.log = function (toLog) {
                 console.log(toLog);
             }
 
-            testChannels.forEach(function(element) {
-                $http.jsonp(twitchTvProxyUrl + '/streams/' + element, { jsonpCallbackParam: 'callback' })
-                 .then(onSuccessGetStreamData);
+            testChannels.forEach(function (channel) {
+                $http.jsonp(twitchTvProxyUrl + '/channels/' + channel, { jsonpCallbackParam: 'callback' })
+                 .then(onSuccessGetChannelInfo);
             });
 
-            function onSuccessGetStreamData(response) {
-                if (response.data.stream != null) {
-                    $scope.streams.push(response.data.stream);
-                }
+            $scope.test = function () {
+                testChannels.forEach(function (channel) {
+                    $http.jsonp(twitchTvProxyUrl + '/channels/' + channel, { jsonpCallbackParam: 'callback' })
+                     .then(function (response) {
+                         console.log(response.data);
+                     });
+                });
+            }
+
+            function onSuccessGetChannelInfo(response) {
+                var channel = response.data;
+                $http.jsonp(twitchTvProxyUrl + '/streams/' + channel.name, { jsonpCallbackParam: 'callback' })
+                 .then(function (response) {
+                     var data = response.data;
+                     if (data.stream === null) {
+                         channel.game = "Offline";
+                         channel.isOnline = false;
+                     } else if (data.stream === undefined) {
+                         channel.game = "Account Closed";
+                         channel.isOnline = false;
+                     } else {
+                         channel.game = data.stream.game;
+                         channel.isOnline = true;
+                     };
+                     $scope.streams.push(channel);
+                 });
             }
         }
     ]);
