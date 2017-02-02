@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.css" rel="stylesheet" />
+</head>
+<body ng-app="TwitchTV">
+    <div class="main" ng-controller="TwitchTVController">
+        <div class="row info-header">
+            <div class="small-10 columns">
+                <h1>Twitch TV Streamers</h1>
+            </div>
+            <div class="small-2 columns">
+                <ul class="filter">
+                    <li ng-repeat="filter in filters">{{filter.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row main-content">
+            <ul class="channels">
+                <li ng-repeat="channel in channels">
+                    <img ng-src="{{channel.logo}}" alt=""/>
+                    <span ng-bind="{{channel.name}}"></span>
+                    <span ng-bind="{{channel.about}}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <script src="js/twitchModule.js"></script>
+</body>
+</html>
