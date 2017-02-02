@@ -43,29 +43,10 @@
                 }
             }
 
-            $scope.getInfo = function () {
-                $scope.streams.forEach(function (stream) {
-                    console.log(stream);
-                });
-            }
-
-            $scope.log = function (toLog) {
-                console.log(toLog);
-            }
-
             testChannels.forEach(function (channel) {
                 $http.jsonp(twitchTvProxyUrl + '/channels/' + channel, { jsonpCallbackParam: 'callback' })
                  .then(onSuccessGetChannelInfo);
             });
-
-            $scope.test = function () {
-                testChannels.forEach(function (channel) {
-                    $http.jsonp(twitchTvProxyUrl + '/channels/' + channel, { jsonpCallbackParam: 'callback' })
-                     .then(function (response) {
-                         console.log(response.data);
-                     });
-                });
-            }
 
             function onSuccessGetChannelInfo(response) {
                 var channel = response.data;
