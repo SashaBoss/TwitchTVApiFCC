@@ -19,17 +19,19 @@
             </div>
         </div>
         <div class="row main-content">
-            <ul class="channels">
-                <li ng-repeat="channel in channels">
-                    <img ng-src="{{channel.logo}}" alt=""/>
-                    <span ng-bind="{{channel.name}}"></span>
-                    <span ng-bind="{{channel.about}}"></span>
+            <ul class="streams">
+                <li ng-repeat="stream in streams" class="stream-element">
+                    <img ng-src="{{stream.channel.logo}}" ng-click="log(this)" class="stream-logo"/>
+                    <a href="" ng-href="{{stream.channel.url}}" target="_blank" class="stream-name">{{stream.channel.display_name}}</a>
+                    <span class="stream-game">{{stream.game}}</span>
                 </li>
             </ul>
         </div>
+        <a class="button" ng-click="getInfo()"></a>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-resource.js"></script>
     <script src="js/twitchModule.js"></script>
 </body>
 </html>
