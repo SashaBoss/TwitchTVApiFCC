@@ -9,17 +9,17 @@
 <body ng-app="TwitchTV">
     <div class="twitch-widget" ng-controller="TwitchTVController">
         <div class="row info-header">
-            <div class="small-10 columns">
+            <div class="small-4 columns">
                 <h1>Twitch TV Streamers</h1>
             </div>
-            <div class="small-2 columns">
+            <div class="small-4 columns end">
                 <select ng-model="selectedFilter" ng-change="filterChanged()"
                         ng-options="filterOption.name  for filterOption in filterOptions"></select>
             </div>
         </div>
         <div class="row main-content">
             <ul class="streams">
-                <li ng-repeat="stream in streams | filter: { toDisplay: 'true'}" class="stream-element">
+                <li ng-repeat="stream in streams | filter: { toDisplay: 'true'}" class="stream-element" ng-class="stream.displayClass">
                     <img ng-src="{{stream.logo}}" ng-click="log(this)" class="stream-logo"/>
                     <a href="" ng-href="{{stream.url}}" target="_blank" class="stream-name">{{stream.name}}</a>
                     <span class="stream-game">{{stream.game}}</span>

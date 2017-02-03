@@ -1,15 +1,27 @@
 body {
+    font-family: Verdana;
     box-sizing: border-box;
 }
 
 .twitch-widget {
     .info-header {
-
+        text-transform: uppercase;
     }
 
     .main-content {
         .streams {
             .stream-element {
+                border: 1px solid green;
+                margin-top: 5px;
+
+                &.online {
+                    background-color: rgb(160, 255, 120)
+                }
+
+                &.offline {
+                     background-color: rgb(255, 141, 75)
+                }
+
                 .stream-logo {
                     width: 120px;
                     height: 120px;

@@ -1,8 +1,18 @@
 body {
+  font-family: Verdana;
   box-sizing: border-box; }
 
-.twitch-widget .main-content .streams .stream-element .stream-logo {
-  width: 120px;
-  height: 120px; }
+.twitch-widget .info-header {
+  text-transform: uppercase; }
+.twitch-widget .main-content .streams .stream-element {
+  border: 1px solid green;
+  margin-top: 5px; }
+  .twitch-widget .main-content .streams .stream-element.online {
+    background-color: #a0ff78; }
+  .twitch-widget .main-content .streams .stream-element.offline {
+    background-color: #ff8d4b; }
+  .twitch-widget .main-content .streams .stream-element .stream-logo {
+    width: 120px;
+    height: 120px; }
 
 /*# sourceMappingURL=style.css.map */

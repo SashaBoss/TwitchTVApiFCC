@@ -56,12 +56,15 @@
                      if (data.stream === null) {
                          channel.game = "Offline";
                          channel.isOnline = false;
+                         channel.displayClass = "offline";
                      } else if (data.stream === undefined) {
                          channel.game = "Account Closed";
                          channel.isOnline = false;
+                         channel.displayClass = "offline";
                      } else {
                          channel.game = data.stream.game;
                          channel.isOnline = true;
+                         channel.displayClass = "online";
                      };
 
                      channel.toDisplay = true;
